@@ -1,8 +1,10 @@
+# Parameters
 HOST = "192.168.1.4"  # Meo Box IP
 PORT = 8082  # Meo Box Port
 time = 30  # Time to mute
 annoying_music_sample = "annoying_music_sample.mp3"  # Your ad sample
 debug = False  # Debug mode (prints similarity)
+threshold = 0.3  # Adjust as needed
 
 # Imports
 import pyaudio, socket, librosa, time, numpy
@@ -45,8 +47,6 @@ def capture_audio(rate, chunk_size):
 
 # Load the annoying music sample
 annoying_music, sr = librosa.load(annoying_music_sample, sr=None)
-# Parameters
-threshold = 0.3  # Adjust as needed
 chunk_size = len(annoying_music)
 flat2 = librosa.feature.melspectrogram(y=annoying_music, sr=sr).flatten()
 # Inform the script started
